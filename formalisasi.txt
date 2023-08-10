@@ -1,0 +1,7 @@
+def formalize_words(text, word_formalization_dict):
+    pattern = re.compile('\\b(' + '|'.join(kamus.keys()) + ')\\b')
+
+    def replace_words(match):
+        return kamus[match.group(0)]
+    formalized_text = pattern.sub(replace_words, text)
+    return formalized_text

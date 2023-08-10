@@ -1,0 +1,18 @@
+def text_proses(teks):
+    teks = teks.lower()
+    teks = re.sub('@[A-Za-z0-9_]+', ' ', teks)
+    teks = re.sub('#[A-Za-z0-9_]+', ' ', teks)
+    teks = re.sub('\\\\n', ' ', teks)
+    teks = teks.strip()
+    teks = re.sub('http\\S+', ' ', teks)
+    teks = re.sub('www.\\S+', ' ', teks)
+    teks = re.sub("[^A-Za-z\\s']", ' ', teks)
+    teks = re.sub('rt', ' ', teks)
+    teks = re.sub('\\b\\w{1,2}\\b', '', teks)
+    teks = re.sub('(\\w)\\1{2,}', '\\1', teks)
+    teks = re.sub('\\b(wk+|aok+|ha+h[aeiou]+|hi+h[aeiou]+|ho+h[aeiou]+)\\b', 'haha', teks)
+    tokens = word_tokenize(teks)
+    teks = ' '.join([word for word in tokens if word not in stpwds_id])
+    teks = formalize_words(teks, formalize_words)
+    teks = stemmer.stem(teks)
+    return teks
